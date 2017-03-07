@@ -2,6 +2,7 @@ from math import *
 from turtle import *
 
 cmds = ["say", "draw", "info", "calculate", "help", "quiz", "newcommand", "name", "company"]
+dont_know = 0
 name = input("What's your name? ")
 
 def command():
@@ -33,14 +34,19 @@ def command():
 
       elif question == cmds[7].casefold():
           print("Your name is %s! " % name)
+          command()
 
       elif question == cmds[8].casefold():
             print("Check out Alessio's company:")
             print("https://zoniklalessimo.000webhostapp.com")
             command()
+
+      elif question == "":
+            command()
                             
       else:
-            print("I don't know this command. ")
+            print("I don't know the command '%s'. " % question)
+            print("Type in 'help' for  list of commands. ")
             command()
           
 def say():
@@ -124,23 +130,24 @@ def draw_square():
      command()
 
 def calculate():
-     x = int(input("Enter your first number "))
-     y = int(input("Enter your second number "))
-     opt = input("Enter an operator (+, -, *, /, sqrt) ")
-     if opt == "+":
-          print(x, " + ", y, " = ", x + y)
-     elif opt == "-":
-          print(x, " - ", y, " = ", x - y)
-     elif opt == "*":
-          print(x, " * ", y, " = ", x * y)
-     elif opt == "/":
-          print(x, " + ", y, " = ", x / y)
-     elif opt == "sqrt":
-          print("The squareroot of ", x, "is", sqrt(x), "and the squareroot of ", y, "is", sqrt(y), "! ")
-     elif opt == cmds[6].casefold():
-         command()
-     command()
+      x = int(input("Enter your first number "))
+      y = int(input("Enter your second number "))
+      opt = input("Enter an operator (+, -, *, /, sqrt, modulo) ")
+      if opt == "+":
+            print(x, " + ", y, " = ", x + y)
+      elif opt == "-":
+            print(x, " - ", y, " = ", x - y)
+      elif opt == "*":
+            print(x, " * ", y, " = ", x * y)
+      elif opt == "/":
+            print(x, " + ", y, " = ", x / y)
+      elif opt == "sqrt".casefold():
+            print("The squareroot of ", x, "is", sqrt(x), "and the squareroot of ", y, "is", sqrt(y), "! ")
+      elif opt == "modulo".casefold():
+            print(x, " % ", y, " = ", x % y)
+      elif opt == cmds[6].casefold():
+            command()
+      command()
           
 command()
 input()
-
